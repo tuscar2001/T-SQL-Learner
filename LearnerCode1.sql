@@ -522,3 +522,13 @@ FROM #SalesByQuarter) sbq
 UNPIVOT
 (Revenue FOR Period IN (Q1, Q2, Q3, Q4)
 ) AS RevenueReport
+
+-- Renaming a column
+exec sp_rename '[tablename].colnameorig', 'colnamerepl'
+-- dropping a column
+alter table #table
+    drop column col1,col2;
+go
+										     
+										     
+										     
