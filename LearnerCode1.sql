@@ -531,4 +531,14 @@ alter table #table
 go
 										     
 										     
+--Using CTEs
+WITH EmpTotalCTE As
+( SELECT e.EmployeeKey, MIN(e.LastName) AS LastName, SUM(fr.SalesAmount) AS TotalPerEmployee
+ FROM dbo.DimEmployee AS e
+ INNER JOIN dbo.FactResellerSales AS fr  ON e.EmployeeKey = fr.EmployeeKey GROUP BY e.EmployeeKey )
+
+SELECT EmployeeKey, LastName, TotalPerEmployee,
+SUM(TotalPerEmployee)  OVER(ORDER BY EmploYeeKey ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)  AS RunningTotal,
+AVG(TotalPerEmployee)  OVER(ORDER BY EmploYeeKey
+ ROWS BETWEEN 2 PRECEDING  AND CURRENT ROW)  AS MovingAverage FROM EmpTotalCTE ORDER BY EmployeeKey; 
 										     
