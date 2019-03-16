@@ -542,3 +542,5 @@ SUM(TotalPerEmployee)  OVER(ORDER BY EmploYeeKey ROWS BETWEEN UNBOUNDED PRECEDIN
 AVG(TotalPerEmployee)  OVER(ORDER BY EmploYeeKey
  ROWS BETWEEN 2 PRECEDING  AND CURRENT ROW)  AS MovingAverage FROM EmpTotalCTE ORDER BY EmployeeKey; 
 										     
+-- imputation function
+ IIF(var1 is not Null, var2, null) as var2,
